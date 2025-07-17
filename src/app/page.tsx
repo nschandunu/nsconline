@@ -4,7 +4,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
  
 export default function Home() {
   const content = `
-    #This is a markdown heading
+    # This is a markdown heading
   `
 
   return (
