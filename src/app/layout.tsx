@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
+import { ThemeProvider } from '@/components/theme-provider'
 
 import { cn } from '@/lib/utils'
 
@@ -25,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
           'flex min-h-screen flex-col font-sans antialiased',
@@ -33,11 +34,18 @@ export default function RootLayout({
           playfair.variable
         )}
       >
-        <Providers>
-          <Header />
-          <main className='grow'>{children}</main>
-          <Footer />
-        </Providers>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light" // Force light mode as default
+          enableSystem={false} // Disable system preference detection
+          disableTransitionOnChange
+        >
+          <Providers>
+            <Header />
+            <main className="grow">{children}</main>
+            <Footer />
+          </Providers>
+        </ThemeProvider>
       </body>
     </html>
   )
