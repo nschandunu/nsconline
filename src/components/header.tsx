@@ -59,9 +59,13 @@ export default function Header() {
             </li>
           </ul>
 
-          <div className="relative mr-[-18px]">
-            <a href="">
-              <p>Project Request #</p>
+          <div className="relative inset-y-0 right-0 z-[102] mr-[-18px] text-[16px] font-medium tracking-[-0.025em] whitespace-nowrap">
+            <a
+              href=""
+              className="px-[18px] py-[8px]"
+              style={{ color: 'var(--blue)' }}
+            >
+              Project Request #
             </a>
           </div>
         </nav>
