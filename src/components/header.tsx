@@ -3,13 +3,14 @@ import ThemeToggle from '@/components/theme-toggle'
 
 export default function Header() {
   return (
-    <header className="bg-background/75 fixed inset-x-0 top-0 z-50 py-6 backdrop-blur-sm">
+    <nav className="fixed top-0 right-0 bottom-auto left-0 z-[1000] border-b border-[#e2e2e2] bg-white/90 py-[12.5px] backdrop-blur-sm">
       <nav className="container flex items-center justify-between">
-        <div>
-          <Link href="/" className="font-serif text-2xl font-bold">
-            HB
+        <div className="flex items-center text-[18px] font-semibold tracking-[-0.025em] no-underline">
+          <Link href="/" aria-current="page">
+            Senuka Chandunu
           </Link>
         </div>
+
         <ul className="text-muted-foreground flex items-center gap-6 text-sm font-light sm:gap-10">
           <li className="hover:text-foreground transition-colors">
             <Link href="/posts">Posts</Link>
@@ -25,6 +26,6 @@ export default function Header() {
           <p>Project Request</p>
         </div>
       </nav>
-    </header>
+    </nav>
   )
 }
