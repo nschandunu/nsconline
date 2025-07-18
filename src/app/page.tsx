@@ -1,5 +1,5 @@
 import React from 'react'
-import Intro from '@/components/hero'
+import Hero from '@/components/hero'
 import { MDXRemote } from 'next-mdx-remote/rsc'
  
 export default function Home() {
@@ -9,8 +9,8 @@ export default function Home() {
 
   return (
       <section className="py-24">
-        <div className="container max-w-3xl">
-          <Intro/>
+        <div className="container">
+          <Hero/>
 
           <MDXRemote source={content}/>
         </div>
