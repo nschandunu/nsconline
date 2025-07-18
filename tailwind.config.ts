@@ -19,6 +19,8 @@ const config: Config = {
         screens: {
             sm: '640px',       // Mobile
             md: '768px',       // Tablet
+            md2: '870px',       // Tablet #2
+            md3: '970px',       // Tablet #2
             lg: '1024px',      // Small laptops
             xl: '1280px',      // Medium laptops / 13" MacBook Air
             'mac14': '1512px', // 14" MacBook Pro (Retina)
