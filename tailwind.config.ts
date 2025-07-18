@@ -42,6 +42,10 @@ const config: Config = {
           // }
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],     // used globally
+        alt: ['"Comic Neue"', 'cursive'],
+      },
         colors: {
           primary: '#FF6363',
           secondary: {
