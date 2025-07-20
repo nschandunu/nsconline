@@ -13,7 +13,6 @@ export default function Home() {
           <Hero/>
             <div className="h-screen bg-gray-50"></div>
 
-          {/* <MDXRemote source={content}/>
           <MDXRemote source={content}/>
           <MDXRemote source={content}/>
           <MDXRemote source={content}/>
@@ -48,7 +47,8 @@ export default function Home() {
           <MDXRemote source={content}/>
           <MDXRemote source={content}/>
           <MDXRemote source={content}/>
-          <MDXRemote source={content}/> */}
+          <MDXRemote source={content}/>
+          <MDXRemote source={content}/>
         </div>
       </section>
   )
