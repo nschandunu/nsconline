@@ -9,9 +9,11 @@ export default function Home() {
 
   return (
       <section className="py-24">
-        <div className="container">
+        <div className="">
           <Hero/>
+            <div className="h-screen bg-gray-50"></div>
 
+          {/* <MDXRemote source={content}/>
           <MDXRemote source={content}/>
           <MDXRemote source={content}/>
           <MDXRemote source={content}/>
@@ -46,8 +48,7 @@ export default function Home() {
           <MDXRemote source={content}/>
           <MDXRemote source={content}/>
           <MDXRemote source={content}/>
-          <MDXRemote source={content}/>
-          <MDXRemote source={content}/>
+          <MDXRemote source={content}/> */}
         </div>
       </section>
   )
