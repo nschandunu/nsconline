@@ -50,14 +50,15 @@ export default function Hero() {
   return (
     <div ref={componentRef} className="relative h-[200vh]">
       <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
-        <div ref={imacRef} className="relative">
+        <div ref={imacRef} className="relative mx-auto max-w-4xl">
           <Image
             src="/assets/images/display.webp"
             alt="iMac Display"
-            width={1000}
-            height={800}
+            width={1100}
+            height={1100}
             priority
-            className="relative h-auto w-auto"
+            className="h-auto w-full"
+            style={{ marginTop: '100px' }}
           />
           <div
             ref={contentRef}

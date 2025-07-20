@@ -55,6 +55,9 @@ const config: Config = {
             200: '#888883',
           },
         },
+        maxWidth: {
+          '8xl': '96rem', // 1536px
+        },
       }
   },
   plugins: [],
