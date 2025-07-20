@@ -14,9 +14,6 @@ export default function Hero() {
   const glowRef = useRef(null)
 
   useLayoutEffect(() => {
-    // THE FIX: Wrap the GSAP logic in a setTimeout to delay it.
-    // This ensures that the DOM is fully loaded and painted before GSAP
-    // tries to calculate the animation, fixing the race condition.
     const timer = setTimeout(() => {
       let ctx = gsap.context(() => {
         const tl = gsap.timeline({
@@ -39,18 +36,27 @@ export default function Hero() {
           )
       }, componentRef)
 
-      // Return the cleanup function for the context
       return () => ctx.revert()
-    }, 100) // A small delay of 100ms is usually enough.
+    }, 100)
 
-    // Cleanup for the setTimeout itself
     return () => clearTimeout(timer)
   }, [])
 
   return (
     <div ref={componentRef} className="relative h-[200vh]">
       <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
-        <div ref={imacRef} className="relative mx-auto max-w-4xl">
+        {/*
+          CUSTOMIZE IMAGE SIZE HERE:
+          Change the `max-w-*` values below to control the image size at different screen resolutions.
+          - `max-w-4xl`: Default max-width for smaller screens.
+          - `mac14:max-w-6xl`: Max-width for screens 1512px and wider.
+          - `2xl:max-w-7xl`: Max-width for screens 1536px and wider.
+          You can use any of Tailwind's max-width utilities (e.g., `max-w-5xl`, `max-w-full`, etc.).
+        */}
+        <div
+          ref={imacRef}
+          className="relative mx-auto w-full max-w-4xl mac14:max-w-6xl 2xl:max-w-6xl"
+        >
           <Image
             src="/assets/images/display.webp"
             alt="iMac Display"
