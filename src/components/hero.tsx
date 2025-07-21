@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function Hero() {
   const componentRef = useRef(null)
+  const stickyRef = useRef(null) 
   const imacRef = useRef(null)
   const contentRef = useRef(null)
   const glowRef = useRef(null)
@@ -21,9 +22,9 @@ export default function Hero() {
             trigger: componentRef.current,
             start: 'top top',
             end: 'bottom bottom',
-            scrub: 0,
-            pin: true
-          }
+            scrub: 1, // Using `true` can feel slightly smoother than 0
+            pin: stickyRef.current, 
+          },
         })
 
         tl.fromTo(imacRef.current, { scale: 2.5 }, { scale: 1 }).fromTo(
@@ -42,15 +43,11 @@ export default function Hero() {
 
   return (
     <div ref={componentRef} className="relative h-[200vh]">
-      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
-        {/*
-          CUSTOMIZE IMAGE SIZE HERE:
-          Change the `max-w-*` values below to control the image size at different screen resolutions.
-          - `max-w-4xl`: Default max-width for smaller screens.
-          - `mac14:max-w-6xl`: Max-width for screens 1512px and wider.
-          - `2xl:max-w-7xl`: Max-width for screens 1536px and wider.
-          You can use any of Tailwind's max-width utilities (e.g., `max-w-5xl`, `max-w-full`, etc.).
-        */}
+      {/* ▼▼▼ ASSIGN THE NEW REF HERE ▼▼▼ */}
+      <div
+        ref={stickyRef}
+        className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden"
+      >
         <div
           ref={imacRef}
           className="mac14:max-w-6xl relative mx-auto w-full max-w-4xl 2xl:max-w-6xl"
