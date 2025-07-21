@@ -8,7 +8,7 @@ export default function Home() {
   `
 
   return (
-      <section className="py-24">
+      <section className="py-4">
         <div className="">
           <Hero/>
             <div className="h-screen bg-gray-50"></div>
