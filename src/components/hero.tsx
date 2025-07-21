@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function Hero() {
   const componentRef = useRef(null)
-  const stickyRef = useRef(null) 
+  const stickyRef = useRef(null)
   const imacRef = useRef(null)
   const contentRef = useRef(null)
   const glowRef = useRef(null)
@@ -22,16 +22,34 @@ export default function Hero() {
             trigger: componentRef.current,
             start: 'top top',
             end: 'bottom bottom',
-            scrub: 1, // Using `true` can feel slightly smoother than 0
-            pin: stickyRef.current, 
+            scrub: true,
+            pin: stickyRef.current,
           },
         })
 
-        tl.fromTo(imacRef.current, { scale: 2.5 }, { scale: 1 }).fromTo(
+        // ▼▼▼ THE FIX IS HERE ▼▼▼
+
+        // 1. Make the scale animation last the ENTIRE duration of the timeline.
+        // The duration value (e.g., 2) is relative; what matters is that it matches the glow's total duration.
+        tl.fromTo(
+          imacRef.current,
+          { scale: 2.5 },
+          { scale: 1, duration: 2, ease: 'power1.inOut' }
+        )
+
+        // 2. Make the glow fade in and out during the scale animation.
+        // A duration of 1 with repeat: 1 gives a total duration of 2, matching the scale animation.
+        tl.fromTo(
           glowRef.current,
           { opacity: 0 },
-          { opacity: 1, yoyo: true, repeat: 1 },
-          '<'
+          {
+            opacity: 1,
+            repeat: 1,
+            yoyo: true,
+            duration: 1,
+            ease: 'power1.inOut',
+          },
+          '<' // <-- This ensures it starts at the same time as the scale animation
         )
       }, componentRef)
 
@@ -43,7 +61,6 @@ export default function Hero() {
 
   return (
     <div ref={componentRef} className="relative h-[200vh]">
-      {/* ▼▼▼ ASSIGN THE NEW REF HERE ▼▼▼ */}
       <div
         ref={stickyRef}
         className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden"
