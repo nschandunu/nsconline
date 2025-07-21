@@ -27,10 +27,6 @@ export default function Hero() {
           },
         })
 
-        // ▼▼▼ THE FIX IS HERE ▼▼▼
-
-        // 1. Make the scale animation last the ENTIRE duration of the timeline.
-        // The duration value (e.g., 2) is relative; what matters is that it matches the glow's total duration.
         tl.fromTo(
           imacRef.current,
           { scale: 2.5 },
@@ -67,6 +63,7 @@ export default function Hero() {
       >
         <div
           ref={imacRef}
+          // Responsive Sizes of the display frame
           className="mac14:max-w-6xl relative mx-auto w-full max-w-4xl 2xl:max-w-6xl"
         >
           <Image
@@ -80,9 +77,11 @@ export default function Hero() {
           />
           <div
             ref={contentRef}
+            // Hero Middle texts
             className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center"
           >
             <div className="relative mb-4">
+              {/* Glow effect */}
               <div
                 ref={glowRef}
                 className="absolute -inset-1 rounded-full bg-gradient-to-br from-pink-400 via-blue-400 to-purple-500 blur-xl"
