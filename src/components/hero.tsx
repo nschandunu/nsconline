@@ -26,14 +26,12 @@ export default function Hero() {
           }
         })
 
-        tl.fromTo(imacRef.current, { scale: 2.5 }, { scale: 1 })
-          .fromTo(contentRef.current, { opacity: 0 }, { opacity: 1 }, '<')
-          .fromTo(
-            glowRef.current,
-            { opacity: 0 },
-            { opacity: 1, yoyo: true, repeat: 1 },
-            '<'
-          )
+        tl.fromTo(imacRef.current, { scale: 2.5 }, { scale: 1 }).fromTo(
+          glowRef.current,
+          { opacity: 0 },
+          { opacity: 1, yoyo: true, repeat: 1 },
+          '<'
+        )
       }, componentRef)
 
       return () => ctx.revert()
@@ -55,7 +53,7 @@ export default function Hero() {
         */}
         <div
           ref={imacRef}
-          className="relative mx-auto w-full max-w-4xl mac14:max-w-6xl 2xl:max-w-6xl"
+          className="mac14:max-w-6xl relative mx-auto w-full max-w-4xl 2xl:max-w-6xl"
         >
           <Image
             src="/assets/images/display.webp"
