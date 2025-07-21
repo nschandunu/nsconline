@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function Hero() {
   const componentRef = useRef(null)
+  const stickyRef = useRef(null)
   const imacRef = useRef(null)
   const contentRef = useRef(null)
   const glowRef = useRef(null)
@@ -21,19 +22,31 @@ export default function Hero() {
             trigger: componentRef.current,
             start: 'top top',
             end: 'bottom bottom',
-            scrub: 1,
-            pin: true
-          }
+            scrub: true,
+            pin: stickyRef.current,
+          },
         })
 
-        tl.fromTo(imacRef.current, { scale: 2.5 }, { scale: 1 })
-          .fromTo(contentRef.current, { opacity: 0 }, { opacity: 1 }, '<')
-          .fromTo(
-            glowRef.current,
-            { opacity: 0 },
-            { opacity: 1, yoyo: true, repeat: 1 },
-            '<'
-          )
+        tl.fromTo(
+          imacRef.current,
+          { scale: 2.5 },
+          { scale: 1, duration: 2, ease: 'power1.inOut' }
+        )
+
+        // 2. Make the glow fade in and out during the scale animation.
+        // A duration of 1 with repeat: 1 gives a total duration of 2, matching the scale animation.
+        tl.fromTo(
+          glowRef.current,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            repeat: 1,
+            yoyo: true,
+            duration: 1,
+            ease: 'power1.inOut',
+          },
+          '<' // <-- This ensures it starts at the same time as the scale animation
+        )
       }, componentRef)
 
       return () => ctx.revert()
@@ -44,18 +57,14 @@ export default function Hero() {
 
   return (
     <div ref={componentRef} className="relative h-[200vh]">
-      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
-        {/*
-          CUSTOMIZE IMAGE SIZE HERE:
-          Change the `max-w-*` values below to control the image size at different screen resolutions.
-          - `max-w-4xl`: Default max-width for smaller screens.
-          - `mac14:max-w-6xl`: Max-width for screens 1512px and wider.
-          - `2xl:max-w-7xl`: Max-width for screens 1536px and wider.
-          You can use any of Tailwind's max-width utilities (e.g., `max-w-5xl`, `max-w-full`, etc.).
-        */}
+      <div
+        ref={stickyRef}
+        className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden"
+      >
         <div
           ref={imacRef}
-          className="relative mx-auto w-full max-w-4xl mac14:max-w-6xl 2xl:max-w-6xl"
+          // Responsive Sizes of the display frame
+          className="mac14:max-w-6xl relative mx-auto w-full max-w-4xl 2xl:max-w-6xl"
         >
           <Image
             src="/assets/images/display.webp"
@@ -68,9 +77,11 @@ export default function Hero() {
           />
           <div
             ref={contentRef}
+            // Hero Middle texts
             className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center"
           >
             <div className="relative mb-4">
+              {/* Glow effect */}
               <div
                 ref={glowRef}
                 className="absolute -inset-1 rounded-full bg-gradient-to-br from-pink-400 via-blue-400 to-purple-500 blur-xl"
