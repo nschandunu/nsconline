@@ -95,7 +95,7 @@ export default function Hero() {
               priority
               className="h-auto w-full"
               style={{ 
-                marginTop: '100px',
+                marginTop: '210px',
                 // Ensure image scales smoothly
                 transformOrigin: 'center center'
               }}
@@ -119,13 +119,14 @@ export default function Hero() {
             }}
           >
             <div className="flex flex-col items-center justify-center">
-              <div className="relative mb-4">
+            <div className="pad pt-[20px]"></div>
+              <div className="relative mb-19 -mt-[0rem]">
                 {/* Glow effect */}
                 <div
                   ref={glowRef}
                   className="absolute -inset-1 rounded-full bg-gradient-to-br from-pink-400 via-blue-400 to-purple-500 blur-xl"
                 ></div>
-                <div className="relative z-10 h-84 w-84 overflow-hidden rounded-full">
+                <div className="relative z-10 h-95 w-95 overflow-hidden rounded-full">
                   <Image
                     src="/assets/images/IMG_5360.png"
                     alt="Senuka Chandunu"
@@ -136,7 +137,7 @@ export default function Hero() {
                 </div>
               </div>
               <div className="flex items-center gap-1">
-                <p className="text-3xl font-medium text-gray-700">
+                <p className="text-3xl font-medium text-gray-700 font-semibold">
                   Senuka Chandunu
                 </p>
                 <svg
@@ -157,7 +158,7 @@ export default function Hero() {
               </h1>
               <a
                 href="#"
-                className="mt-6 flex items-center text-2xl font-medium text-blue-600 hover:underline"
+                className="mt-6 flex items-center text-[1.80rem] font-medium text-blue-600 hover:underline"
               >
                 Start a project request
                 <svg
