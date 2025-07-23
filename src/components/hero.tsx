@@ -135,7 +135,7 @@ export default function Hero() {
                   />
                 </div>
               </div>
-              <div className="mb-3 flex items-center gap-1">
+              <div className="mb-3 flex items-end gap-1">
                 <p
                   className="font-medium font-semibold"
                   style={{
@@ -150,7 +150,7 @@ export default function Hero() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
-                  className="h-5 w-5 text-blue-500"
+                className="h-5 w-5" style={{ color: '#3ebbef', marginBottom: '10px' }}
                 >
                   <path
                     fillRule="evenodd"
