@@ -125,7 +125,7 @@ export default function Hero() {
                   className="absolute rounded-full"
                   style={{
                     backgroundColor: '#FF5858',
-                    border: '1.01px solid #FFFFFF',
+                    border: '2px solid #FFFFFF',
                     opacity: 0.1,
                     width: '385px',
                     height: '385px',
