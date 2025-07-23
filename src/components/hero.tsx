@@ -124,11 +124,11 @@ export default function Hero() {
                 <div 
                   className="absolute rounded-full"
                   style={{
-                    backgroundColor: '#FF5858',
-                    border: '2px solid #FFFFFF',
-                    opacity: 0.1,
-                    width: '385px',
-                    height: '385px',
+                    backgroundColor: 'hsla(0,0%, 84%,.5)',
+                    border: '1.01px solid hsla(0,0%, 100%, 0.4)',
+                    opacity: 0.6,
+                    width: '387px',
+                    height: '387px',
                     top: 'calc(50% - 6px)',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
