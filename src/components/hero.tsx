@@ -151,7 +151,7 @@ export default function Hero() {
                       width: '100%',
                       height: '100%',
                       borderRadius: '50%',
-                      backgroundImage: `radial-gradient(circle farthest-side at 100% 100%, #9873ff, rgba(152,115,255,0)), radial-gradient(circle farthest-side at 100% 0, #0ba5f7, rgba(85,196,255,0)), radial-gradient(circle farthest-side at 0 100%, #ff763c, rgba(255,176,60,0)), radial-gradient(circle farthest-side at 0 0, #ff5aaa, rgba(255,90,170,0))`
+                      backgroundImage: `radial-gradient(circle farthest-side at 100% 100%, #9873ff, rgba(152,115,255,0)), radial-gradient(circle farthest-side at 100% 0, #0ba5f7, rgba(85,196,255,0)), radial-gradient(circle farthest-side at 0 100%, #ff5aaa, rgba(255,90,170,0)), radial-gradient(circle farthest-side at 0 0,  #ff763c , rgba(255,176,60,0))`
                     }}
                   ></div>
                 </div>
