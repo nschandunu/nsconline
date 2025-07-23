@@ -136,8 +136,8 @@ export default function Hero() {
                   />
                 </div>
               </div>
-              <div className="flex items-center gap-1">
-                <p className="text-3xl font-medium text-gray-700 font-semibold">
+              <div className="flex items-center gap-1 mb-3">
+                <p className="font-medium font-semibold" style={{ color: 'var(--primary-text-color)', fontSize: '1.975rem', letterSpacing: '-1px' }}>
                   Senuka Chandunu
                 </p>
                 <svg
@@ -153,12 +153,13 @@ export default function Hero() {
                   />
                 </svg>
               </div>
-              <h1 className="mt-1 text-9xl font-bold tracking-tighter text-gray-900">
-                Jrteghert reh erge.
+              <h1 className="mt-1 text-9xl font-semibold tracking-tighter" style={{ color: '#000000', letterSpacing: '-7px' }}>
+                Create Build Elevate.
               </h1>
               <a
                 href="#"
-                className="mt-6 flex items-center text-[1.80rem] font-medium text-blue-600 hover:underline"
+                className="mt-6 flex items-center text-[1.70rem] font-medium hover:underline"
+                style={{ color: 'var(--blue)', letterSpacing: '-1px' }}
               >
                 Start a project request
                 <svg
