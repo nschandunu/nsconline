@@ -12,7 +12,7 @@ export default function Hero() {
   const stickyRef = useRef(null)
   const imageWrapperRef = useRef(null)
   const textWrapperRef = useRef(null)
-  const glowRef = useRef(null)
+  // const glowRef = useRef(null) // ⬅️ REMOVED
 
   useLayoutEffect(() => {
     const timer = setTimeout(() => {
@@ -47,7 +47,8 @@ export default function Hero() {
           '<' // Start at the same time as image animation
         )
 
-        // Keep the glow effect as before
+        // ⬇️ REMOVED the GSAP animation for the old glow effect
+        /*
         tl.fromTo(
           glowRef.current,
           { opacity: 1 },
@@ -58,8 +59,9 @@ export default function Hero() {
             duration: 1,
             ease: 'power1.inOut'
           },
-          '<' // Start at the same time as the scale animation
+          '<'
         )
+        */
       }, componentRef)
 
       return () => ctx.revert()
@@ -81,7 +83,6 @@ export default function Hero() {
             ref={imageWrapperRef}
             className="mac14:max-w-6xl absolute inset-0 mx-auto flex w-full max-w-4xl items-center justify-center 2xl:max-w-6xl"
             style={{
-              // Performance optimizations for smooth scaling
               willChange: 'transform',
               transformOrigin: 'center center'
             }}
@@ -95,7 +96,6 @@ export default function Hero() {
               className="h-auto w-full"
               style={{
                 marginTop: '210px',
-                // Ensure image scales smoothly
                 transformOrigin: 'center center'
               }}
             />
@@ -106,14 +106,11 @@ export default function Hero() {
             ref={textWrapperRef}
             className="absolute inset-0 z-10 flex items-center justify-center"
             style={{
-              // Safari text rendering optimizations
               WebkitFontSmoothing: 'antialiased',
               MozOsxFontSmoothing: 'grayscale',
               textRendering: 'optimizeLegibility',
-              // Force hardware acceleration for text layer
               transform: 'translate3d(0, 0, 0)',
               willChange: 'opacity, transform',
-              // Ensure text always renders at scale(1)
               transformOrigin: 'center center'
             }}
           >
@@ -121,12 +118,12 @@ export default function Hero() {
               <div className="pad pt-[7px]"></div>
               <div className="relative -mt-[10px] mb-19 pb-3">
                 {/* Decorative ellipse background */}
-                <div 
+                <div
                   className="absolute rounded-full"
                   style={{
                     backgroundColor: 'hsla(0,0%, 84%,.5)',
                     border: '1.01px solid hsla(0,0%, 100%, 0.4)',
-                    opacity: 0.6,
+                    opacity: 0.1,
                     width: '387px',
                     height: '387px',
                     top: 'calc(50% - 6px)',
@@ -135,11 +132,33 @@ export default function Hero() {
                     zIndex: 1
                   }}
                 ></div>
-                {/* Glow effect */}
-                <div
-                  ref={glowRef}
-                  className="absolute -inset-1 rounded-full bg-gradient-to-br from-pink-400 via-blue-400 to-purple-500 blur-xl"
-                ></div>
+
+                {/* ⬇️ NEW GLOW EFFECT STRUCTURE ⬇️ */}
+                <div // This is the wrapper div (.hero-img-shadow-wrap)
+                  style={{
+                    position: 'absolute',
+                    width: '140%',
+                    height: '140%',
+                    top: '-20%',
+                    left: '-20%',
+                    borderRadius: '50%',
+                    filter: 'blur(20px)',
+                    padding: '17%'
+                  }}
+                >
+                  <div // This is the inner div with gradients (.hero-img-shadow)
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '50%',
+                      backgroundImage: `radial-gradient(circle farthest-side at 100% 100%, #9873ff, rgba(152,115,255,0)), radial-gradient(circle farthest-side at 100% 0, #0ba5f7, rgba(85,196,255,0)), radial-gradient(circle farthest-side at 0 100%, #ff763c, rgba(255,176,60,0)), radial-gradient(circle farthest-side at 0 0, #ff5aaa, rgba(255,90,170,0))`
+                    }}
+                  ></div>
+                </div>
+                {/* ⬆️ END OF NEW GLOW EFFECT ⬆️ */}
+
+                {/* ⬅️ OLD GLOW DIV REMOVED FROM HERE */}
+
                 <div className="relative z-10 h-90 w-90 overflow-hidden rounded-full">
                   <Image
                     src="/assets/images/IMG_5360.png"
@@ -165,7 +184,8 @@ export default function Hero() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
-                className="h-5 w-5" style={{ color: '#3ebbef', marginBottom: '10px' }}
+                  className="h-5 w-5"
+                  style={{ color: '#3ebbef', marginBottom: '10px' }}
                 >
                   <path
                     fillRule="evenodd"
