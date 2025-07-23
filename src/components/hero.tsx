@@ -23,8 +23,8 @@ export default function Hero() {
             start: 'top top',
             end: 'bottom bottom',
             scrub: true,
-            pin: stickyRef.current,
-          },
+            pin: stickyRef.current
+          }
         })
 
         // Keep the SAME image scale animation as before (2.5 → 1)
@@ -38,9 +38,9 @@ export default function Hero() {
         tl.fromTo(
           textWrapperRef.current,
           { scale: 1 },
-          { 
-            scale: 0.38, 
-            duration: 2, 
+          {
+            scale: 0.38,
+            duration: 2,
             ease: 'power1.inOut',
             force3D: true
           },
@@ -56,7 +56,7 @@ export default function Hero() {
             repeat: 1,
             yoyo: true,
             duration: 1,
-            ease: 'power1.inOut',
+            ease: 'power1.inOut'
           },
           '<' // Start at the same time as the scale animation
         )
@@ -75,12 +75,11 @@ export default function Hero() {
         className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden"
       >
         {/* Container for proper layering */}
-        <div className="relative w-full h-full flex items-center justify-center">
-          
+        <div className="relative flex h-full w-full items-center justify-center">
           {/* Image Wrapper - This will be scaled */}
           <div
             ref={imageWrapperRef}
-            className="mac14:max-w-6xl absolute inset-0 flex items-center justify-center w-full max-w-4xl 2xl:max-w-6xl mx-auto"
+            className="mac14:max-w-6xl absolute inset-0 mx-auto flex w-full max-w-4xl items-center justify-center 2xl:max-w-6xl"
             style={{
               // Performance optimizations for smooth scaling
               willChange: 'transform',
@@ -94,7 +93,7 @@ export default function Hero() {
               height={1100}
               priority
               className="h-auto w-full"
-              style={{ 
+              style={{
                 marginTop: '210px',
                 // Ensure image scales smoothly
                 transformOrigin: 'center center'
@@ -105,7 +104,7 @@ export default function Hero() {
           {/* Text Wrapper - Always stays at scale(1) for crisp text */}
           <div
             ref={textWrapperRef}
-            className="absolute inset-0 flex items-center justify-center z-10"
+            className="absolute inset-0 z-10 flex items-center justify-center"
             style={{
               // Safari text rendering optimizations
               WebkitFontSmoothing: 'antialiased',
@@ -119,14 +118,14 @@ export default function Hero() {
             }}
           >
             <div className="flex flex-col items-center justify-center">
-            <div className="pad pt-[10px]"></div>
-              <div className="relative mb-19 -mt-[rem]">
+              <div className="pad pt-[7px]"></div>
+              <div className="relative -mt-[10px] mb-19 pb-3">
                 {/* Glow effect */}
                 <div
                   ref={glowRef}
                   className="absolute -inset-1 rounded-full bg-gradient-to-br from-pink-400 via-blue-400 to-purple-500 blur-xl"
                 ></div>
-                <div className="relative z-10 h-90 w-90 overflow-hidden rounded-full ">
+                <div className="relative z-10 h-90 w-90 overflow-hidden rounded-full">
                   <Image
                     src="/assets/images/IMG_5360.png"
                     alt="Senuka Chandunu"
@@ -136,8 +135,15 @@ export default function Hero() {
                   />
                 </div>
               </div>
-              <div className="flex items-center gap-1 mb-3">
-                <p className="font-medium font-semibold" style={{ color: 'var(--primary-text-color)', fontSize: '1.975rem', letterSpacing: '-1px' }}>
+              <div className="mb-3 flex items-center gap-1">
+                <p
+                  className="font-medium font-semibold"
+                  style={{
+                    color: 'var(--primary-text-color)',
+                    fontSize: '1.975rem',
+                    letterSpacing: '-1px'
+                  }}
+                >
                   Senuka Chandunu
                 </p>
                 <svg
@@ -153,7 +159,10 @@ export default function Hero() {
                   />
                 </svg>
               </div>
-              <h1 className="mt-1 text-9xl font-semibold tracking-tighter" style={{ color: '#000000', letterSpacing: '-7px' }}>
+              <h1
+                className="mt-1 text-9xl font-semibold tracking-tighter"
+                style={{ color: '#000000', letterSpacing: '-7px' }}
+              >
                 Create Build Elevate.
               </h1>
               <a
