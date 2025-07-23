@@ -120,6 +120,21 @@ export default function Hero() {
             <div className="flex flex-col items-center justify-center">
               <div className="pad pt-[7px]"></div>
               <div className="relative -mt-[10px] mb-19 pb-3">
+                {/* Decorative ellipse background */}
+                <div 
+                  className="absolute rounded-full"
+                  style={{
+                    backgroundColor: '#FF5858',
+                    border: '1.01px solid #FFFFFF',
+                    opacity: 0.1,
+                    width: '385px',
+                    height: '385px',
+                    top: 'calc(50% - 6px)',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 1
+                  }}
+                ></div>
                 {/* Glow effect */}
                 <div
                   ref={glowRef}
