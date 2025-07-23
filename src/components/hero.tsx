@@ -39,7 +39,7 @@ export default function Hero() {
           textWrapperRef.current,
           { scale: 1 },
           { 
-            scale: 0.4, 
+            scale: 0.38, 
             duration: 2, 
             ease: 'power1.inOut',
             force3D: true
@@ -126,7 +126,7 @@ export default function Hero() {
                   ref={glowRef}
                   className="absolute -inset-1 rounded-full bg-gradient-to-br from-pink-400 via-blue-400 to-purple-500 blur-xl"
                 ></div>
-                <div className="relative z-10 h-93 w-93 overflow-hidden rounded-full">
+                <div className="relative z-10 h-90 w-90 overflow-hidden rounded-full ">
                   <Image
                     src="/assets/images/IMG_5360.png"
                     alt="Senuka Chandunu"
