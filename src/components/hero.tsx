@@ -119,14 +119,14 @@ export default function Hero() {
             }}
           >
             <div className="flex flex-col items-center justify-center">
-            <div className="pad pt-[20px]"></div>
-              <div className="relative mb-19 -mt-[0rem]">
+            <div className="pad pt-[10px]"></div>
+              <div className="relative mb-19 -mt-[rem]">
                 {/* Glow effect */}
                 <div
                   ref={glowRef}
                   className="absolute -inset-1 rounded-full bg-gradient-to-br from-pink-400 via-blue-400 to-purple-500 blur-xl"
                 ></div>
-                <div className="relative z-10 h-95 w-95 overflow-hidden rounded-full">
+                <div className="relative z-10 h-93 w-93 overflow-hidden rounded-full">
                   <Image
                     src="/assets/images/IMG_5360.png"
                     alt="Senuka Chandunu"
