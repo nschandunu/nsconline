@@ -72,7 +72,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <div ref={componentRef} className="relative h-[200vh]">
+    <div ref={componentRef} className="relative h-[calc(200vh+210px)]">
       <div
         ref={stickyRef}
         className="sticky top-0 flex h-screen w-full items-center justify-center"
