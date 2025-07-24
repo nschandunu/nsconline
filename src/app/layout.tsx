@@ -9,6 +9,8 @@ import Providers from '@/components/providers'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 
+import SmoothScroller from '@/components/smoothscroller'
+
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -34,6 +36,7 @@ export default function RootLayout({
           playfair.variable
         )}
       >
+        <SmoothScroller />
         <ThemeProvider
           attribute="class"
           defaultTheme="light" // Force light mode as default
