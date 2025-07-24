@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
+
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Hero() {
@@ -74,7 +75,7 @@ export default function Hero() {
     <div ref={componentRef} className="relative h-[200vh]">
       <div
         ref={stickyRef}
-        className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden"
+        className="sticky top-0 flex h-screen w-full items-center justify-center"
       >
         {/* Container for proper layering */}
         <div className="relative flex h-full w-full items-center justify-center">
