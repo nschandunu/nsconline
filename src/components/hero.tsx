@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Hero() {
@@ -23,8 +22,8 @@ export default function Hero() {
             trigger: componentRef.current,
             start: 'top top',
             end: 'bottom bottom',
-            scrub: true,
-            pin: stickyRef.current
+            scrub: true
+            // pin: stickyRef.current,
           }
         })
 
