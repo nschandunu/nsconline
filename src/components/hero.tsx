@@ -10,9 +10,9 @@ gsap.registerPlugin(ScrollTrigger)
 export default function Hero() {
   const componentRef = useRef(null)
   const stickyRef = useRef(null)
-  const imacRef = useRef(null)
-  const contentRef = useRef(null)
-  const glowRef = useRef(null)
+  const imageWrapperRef = useRef(null)
+  const textWrapperRef = useRef(null)
+  // const glowRef = useRef(null) // ⬅️ REMOVED
 
   useLayoutEffect(() => {
     const timer = setTimeout(() => {
@@ -22,31 +22,46 @@ export default function Hero() {
             trigger: componentRef.current,
             start: 'top top',
             end: 'bottom bottom',
-            scrub: true,
-            pin: stickyRef.current,
-          },
+            scrub: true
+            // pin: stickyRef.current,
+          }
         })
 
+        // Keep the SAME image scale animation as before (2.5 → 1)
         tl.fromTo(
-          imacRef.current,
+          imageWrapperRef.current,
           { scale: 2.5 },
           { scale: 1, duration: 2, ease: 'power1.inOut' }
         )
 
-        // 2. Make the glow fade in and out during the scale animation.
-        // A duration of 1 with repeat: 1 gives a total duration of 2, matching the scale animation.
+        // Text wrapper animation - scale from 1 to 0.4 (matching the ratio of 2.5 → 1)
+        tl.fromTo(
+          textWrapperRef.current,
+          { scale: 1 },
+          {
+            scale: 0.38,
+            duration: 2,
+            ease: 'power1.inOut',
+            force3D: true
+          },
+          '<' // Start at the same time as image animation
+        )
+
+        // ⬇️ REMOVED the GSAP animation for the old glow effect
+        /*
         tl.fromTo(
           glowRef.current,
-          { opacity: 0 },
+          { opacity: 1 },
           {
             opacity: 1,
             repeat: 1,
             yoyo: true,
             duration: 1,
-            ease: 'power1.inOut',
+            ease: 'power1.inOut'
           },
-          '<' // <-- This ensures it starts at the same time as the scale animation
+          '<'
         )
+        */
       }, componentRef)
 
       return () => ctx.revert()
@@ -59,81 +74,152 @@ export default function Hero() {
     <div ref={componentRef} className="relative h-[200vh]">
       <div
         ref={stickyRef}
-        className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden"
+        className="sticky top-0 flex h-screen w-full items-center justify-center"
       >
-        <div
-          ref={imacRef}
-          // Responsive Sizes of the display frame
-          className="mac14:max-w-6xl relative mx-auto w-full max-w-4xl 2xl:max-w-6xl"
-        >
-          <Image
-            src="/assets/images/display.webp"
-            alt="iMac Display"
-            width={1100}
-            height={1100}
-            priority
-            className="h-auto w-full"
-            style={{ marginTop: '100px' }}
-          />
+        {/* Container for proper layering */}
+        <div className="relative flex h-full w-full items-center justify-center">
+          {/* Image Wrapper - This will be scaled */}
           <div
-            ref={contentRef}
-            // Hero Middle texts
-            className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center"
+            ref={imageWrapperRef}
+            className="mac14:max-w-6xl absolute inset-0 mx-auto flex w-full max-w-4xl items-center justify-center 2xl:max-w-6xl"
+            style={{
+              willChange: 'transform',
+              transformOrigin: 'center center'
+            }}
           >
-            <div className="relative mb-4">
-              {/* Glow effect */}
-              <div
-                ref={glowRef}
-                className="absolute -inset-1 rounded-full bg-gradient-to-br from-pink-400 via-blue-400 to-purple-500 blur-xl"
-              ></div>
-              <div className="relative z-10 h-24 w-24 overflow-hidden rounded-full">
-                <Image
-                  src="/assets/images/IMG_5360.png"
-                  alt="Senuka Chandunu"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="scale-110"
-                />
+            <Image
+              src="/assets/images/display.webp"
+              alt="iMac Display"
+              width={1100}
+              height={1100}
+              priority
+              className="h-auto w-full"
+              style={{
+                marginTop: '210px',
+                transformOrigin: 'center center'
+              }}
+            />
+          </div>
+
+          {/* Text Wrapper - Always stays at scale(1) for crisp text */}
+          <div
+            ref={textWrapperRef}
+            className="absolute inset-0 z-10 flex items-center justify-center"
+            style={{
+              WebkitFontSmoothing: 'antialiased',
+              MozOsxFontSmoothing: 'grayscale',
+              textRendering: 'optimizeLegibility',
+              transform: 'translate3d(0, 0, 0)',
+              willChange: 'opacity, transform',
+              transformOrigin: 'center center'
+            }}
+          >
+            <div className="flex flex-col items-center justify-center">
+              <div className="pad pt-[7px]"></div>
+              <div className="relative -mt-[10px] mb-19 pb-3">
+                {/* Decorative ellipse background */}
+                <div
+                  className="absolute rounded-full"
+                  style={{
+                    backgroundColor: 'hsla(0,0%, 84%,.5)',
+                    border: '1.01px solid hsla(0,0%, 100%, 0.4)',
+                    opacity: 0.1,
+                    width: '387px',
+                    height: '387px',
+                    top: 'calc(50% - 6px)',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 1
+                  }}
+                ></div>
+
+                {/* ⬇️ NEW GLOW EFFECT STRUCTURE ⬇️ */}
+                <div // This is the wrapper div (.hero-img-shadow-wrap)
+                  style={{
+                    position: 'absolute',
+                    width: '140%',
+                    height: '140%',
+                    top: '-20%',
+                    left: '-20%',
+                    borderRadius: '50%',
+                    filter: 'blur(20px)',
+                    padding: '17%'
+                  }}
+                >
+                  <div // This is the inner div with gradients (.hero-img-shadow)
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '50%',
+                      backgroundImage: `radial-gradient(circle farthest-side at 100% 100%, #9873ff, rgba(152,115,255,0)), radial-gradient(circle farthest-side at 100% 0, #0ba5f7, rgba(85,196,255,0)), radial-gradient(circle farthest-side at 0 100%, #ff5aaa, rgba(255,90,170,0)), radial-gradient(circle farthest-side at 0 0,  #ff763c , rgba(255,176,60,0))`
+                    }}
+                  ></div>
+                </div>
+                {/* ⬆️ END OF NEW GLOW EFFECT ⬆️ */}
+
+                {/* ⬅️ OLD GLOW DIV REMOVED FROM HERE */}
+
+                <div className="relative z-10 h-90 w-90 overflow-hidden rounded-full">
+                  <Image
+                    src="/assets/images/IMG_5360.png"
+                    alt="Senuka Chandunu"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    className="scale-110"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-1">
-              <p className="text-lg font-medium text-gray-700">
-                Senuka Chandunu
-              </p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="h-5 w-5 text-blue-500"
+              <div className="mb-3 flex items-end gap-1">
+                <p
+                  className="font-medium font-semibold"
+                  style={{
+                    color: 'var(--primary-text-color)',
+                    fontSize: '1.975rem',
+                    letterSpacing: '-1px'
+                  }}
+                >
+                  Senuka Chandunu
+                </p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="h-5 w-5"
+                  style={{ color: '#3ebbef', marginBottom: '10px' }}
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+              <h1
+                className="mt-1 text-9xl font-semibold tracking-tighter"
+                style={{ color: '#000000', letterSpacing: '-7px' }}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <h1 className="mt-1 text-5xl font-extrabold tracking-tighter text-gray-900">
-              Jrteghert reh erge.
-            </h1>
-            <a
-              href="#"
-              className="mt-6 flex items-center text-lg font-medium text-blue-600 hover:underline"
-            >
-              Start a project request
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="ml-1 h-5 w-5"
+                Create Build Elevate.
+              </h1>
+              <a
+                href="#"
+                className="mt-6 flex items-center text-[1.70rem] font-medium hover:underline"
+                style={{ color: 'var(--blue)', letterSpacing: '-1px' }}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </a>
+                Start a project request
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="ml-1 h-5 w-5"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>

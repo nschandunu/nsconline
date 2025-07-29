@@ -11,7 +11,7 @@ export default function Home() {
       <section className="py-4">
         <div className="">
           <Hero/>
-            <div className="h-screen bg-gray-50"></div>
+          <div className="h-screen bg-green-500"></div>
 
           <MDXRemote source={content}/>
           <MDXRemote source={content}/>
