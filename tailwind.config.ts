@@ -59,7 +59,7 @@ const config: Config = {
           '8xl': '96rem', // 1536px
         },
         animation: {
-          'intro-gradient': 'intro-gradient 10s ease infinite',
+          'intro-gradient': 'intro-gradient 12s ease infinite',
         },
         keyframes: {
           'intro-gradient': {
