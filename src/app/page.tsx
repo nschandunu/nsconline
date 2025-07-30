@@ -8,9 +8,10 @@ export default function Home() {
   `
 
   return (
-      <section className="py-24">
-        <div className="container">
+      <section className="py-4">
+        <div className="">
           <Hero/>
+          <div className="h-screen bg-green-500"></div>
 
           <MDXRemote source={content}/>
           <MDXRemote source={content}/>
