@@ -1,5 +1,6 @@
 import React from 'react'
 import Hero from '@/components/hero'
+import Statement from '@/components/statement'
 import { MDXRemote } from 'next-mdx-remote/rsc'
  
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <section className="py-4">
         <div className="">
           <Hero/>
+          <Statement/>
           <div className="h-screen bg-green-500"></div>
 
           <MDXRemote source={content}/>
